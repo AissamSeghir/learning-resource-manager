@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import Logo from '/logo.svg';
 import './auth.css';
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   });
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

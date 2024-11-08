@@ -1,0 +1,28 @@
+/* *{
+    background-color: #1d366f;
+    color: aliceblue;
+} */
+
+.home{
+    max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.home p{
+    width: 80%;
+    margin: auto;
+}
+
+.home .btns{
+    margin-top: 15px;
+}
+
+.home button{
+    background-color: #108E73;
+    outline: none;
+    font-weight: 700;
+    margin-left: 10px;
+
+  }

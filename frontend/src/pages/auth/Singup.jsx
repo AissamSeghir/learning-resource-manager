@@ -55,6 +55,7 @@ function Singup() {
 
   
   return (
+    <main>
     <div className="formAuth">
       <form onSubmit={handleSubmit}>
         <h2>Get started</h2>
@@ -79,6 +80,8 @@ function Singup() {
         </p>
       </form>
     </div>
+
+    </main>
   );
 }
 
