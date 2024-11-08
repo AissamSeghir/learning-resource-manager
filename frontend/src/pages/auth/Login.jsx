@@ -1,25 +1,75 @@
-import React from 'react'
-import Logo from '/logo.svg'
-import './auth.css'
+import React, { useState } from 'react';
+import Logo from '/logo.svg';
+import './auth.css';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from 'react-router-dom';
 
 function Login() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const queryClient = useQueryClient();
+
+  const { mutate: loginMutation, isLoading, isError, error } = useMutation({
+    mutationFn: async ({ email, password }) => {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Something went wrong");
+      }
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["authUser"] });
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loginMutation(formData);
+  };
+
   return (
     <div className='formAuth'>
-      <form >
-        <h2>Welcom Back</h2>
+      <form onSubmit={handleSubmit}>
+        <h2>Welcome Back</h2>
         <div>
-            <img src={Logo} alt="logo" />
+          <img src={Logo} alt="logo" />
         </div>
-        <label htmlFor="">Email*</label>
-        <input type="email" placeholder='You@example.com' />
-        <label htmlFor="">Password*</label>
-        <input type="password" />
-        <button>Sing in</button>
-        <p>Don't have an account? <span><Link to='/singup'>Sing up </Link></span></p>
+        <label htmlFor="email">Email*</label>
+        <input
+          type="email"
+          placeholder='You@example.com'
+          name='email'
+          onChange={handleChange}
+          value={formData.email}
+        />
+        <label htmlFor="password">Password*</label>
+        <input
+          type="password"
+          name='password'
+          onChange={handleChange}
+          value={formData.password}
+        />
+        <button disabled={isLoading}>Sign in</button>
+        {isError && <p className="error">{error.message}</p>}
+        <p>Don't have an account? <span><Link to='/signup'>Sign up</Link></span></p>
       </form>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

@@ -3,7 +3,7 @@ import {useMutation, useQueryClient} from '@tanstack/react-query'
 import {toast} from 'react-hot-toast'
 import "./auth.css";
 import Logo from '/logo.svg'
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 const addUser = async (newUser)=>{
    const response = await fetch('/api/user',{
     method:'post',
@@ -25,6 +25,7 @@ function Singup() {
   const [password, setPassword] = useState("")
   console.log(email);
   const quiryCleint = useQueryClient()
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: addUser,
@@ -35,6 +36,7 @@ function Singup() {
       setLastName('')
       setEmail('')
       setPassword('')
+      navigate('/login')
     },
     onError: (err)=>{
       toast.error('error sing up', err)
