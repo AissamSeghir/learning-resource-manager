@@ -1,4 +1,10 @@
-.formAuth {
+.formAuth{
+  width: 100vw;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.formAuth form {
     /* width: 90%; */
     width: 450px;
     background-color: #1d366f;
@@ -6,6 +12,8 @@
     border-radius: 10px;
     margin: auto;
     padding: 15px 0;
+    text-align: center;
+
   }
   
   .formAuth img {

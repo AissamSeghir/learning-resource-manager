@@ -6,6 +6,7 @@ import Home from "./pages/home/Home";
 import {useQuery, useQueryClient} from '@tanstack/react-query'
 import Toaster from 'react-hot-toast'
 import ProtectedRoute from "./ProtectedRoute";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 
 function App() {
@@ -40,6 +41,10 @@ function App() {
         <Route
             path="/"
             element={authUser ? <Home /> : <Navigate to="/login" />}
+          />
+        <Route
+            path="/dashboard"
+            element={authUser ? <Dashboard /> : <Navigate to="/login" />}
           />
       </Routes>
       {/* <Toaster/> */}
