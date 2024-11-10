@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import './formRessoures.css'
 
 const addResource = async (newResource)=>{
-  const res = await fetch('/api/resource', {
+  const res = await fetch('/api/resources', {
     method:'post',
     headers:{
       "content-type":"application/json"

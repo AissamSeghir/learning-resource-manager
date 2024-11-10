@@ -1,8 +1,9 @@
 import express from 'express'
-import { addResource } from '../controllers/resource.controller.js'
+import { addResource, getResources } from '../controllers/resource.controller.js'
 
 const router = express.Router()
 
-router.post('/resource',addResource)
+router.post('/',addResource)
+router.get('/',getResources)
 
 export default router

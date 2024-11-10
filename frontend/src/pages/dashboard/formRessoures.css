@@ -12,7 +12,7 @@ header img{
 }
 
 .add-ressource section{
-    background-color: #213d7e55;
+    background-color: #21377ed3;
     min-height: 90vh;
     padding: 8px 20px;
 }
@@ -33,6 +33,7 @@ header img{
     outline: none;
     border-radius: 5px ;
     border: none;
+    padding: 3px 10px;
 }
 
 .ressource-info input , select{
@@ -42,10 +43,18 @@ header img{
 
 .ressource-info span{
     font-size: 20px;
+    color: aliceblue;
 }
 
 .add-ressource button{
     background-color: #108E73;
     outline: none;
     font-weight: 700;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.25s;
 }
