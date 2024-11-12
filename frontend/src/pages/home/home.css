@@ -10,9 +10,14 @@
   text-align: center;
 }
 
+.home h2{
+    margin-bottom: 20px;
+}
+
 .home p{
     width: 80%;
     margin: auto;
+    margin-bottom: 20px;
 }
 
 .home .btns{
@@ -20,8 +25,9 @@
 }
 
 .home button{
-    background-color: #108E73;
+    background-color: #000;
     outline: none;
+    color: #fff;
     font-weight: 700;
     border-radius: 8px;
     border: 1px solid transparent;

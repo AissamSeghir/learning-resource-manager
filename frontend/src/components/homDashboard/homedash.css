@@ -1,5 +1,4 @@
 .home-dash .content{
-    background-color: #21377ed3;
     min-height: 90vh;
     padding: 8px 20px;
 }
@@ -15,8 +14,8 @@ table {
 thead th,td{
     position: sticky;
     border: 1px solid black;
-    background-color: #21377e48;
-    color: aliceblue;
+    background-color: #efefee;
+    color: #000;
 }
 
 table button{
@@ -40,4 +39,27 @@ table button:last-child{
 table button i{
     font-size: 12px;
     text-align: center;
+}
+
+.modal{
+    width: 250px;
+}
+
+.modal h3 ,p{
+    text-align: center;
+}
+
+.modal button{
+
+    margin-top: 8px ;
+    padding: 8px 3px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 10px;
+    padding: 5px 8px;
+}
+
+.modal button .confirm{
+    background-color: #F95454;
 }

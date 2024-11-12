@@ -4,9 +4,9 @@ import Login from "./pages/auth/Login";
 import Singup from "./pages/auth/Singup";
 import Home from "./pages/home/Home";
 import {useQuery, useQueryClient} from '@tanstack/react-query'
-import Toaster from 'react-hot-toast'
 import ProtectedRoute from "./ProtectedRoute";
 import Dashboard from "./pages/dashboard/Dashboard";
+import { Toaster } from "react-hot-toast";
 
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
             element={authUser ? <Dashboard /> : <Navigate to="/login" />}
           />
       </Routes>
-      {/* <Toaster/> */}
+      <Toaster/>
     </BrowserRouter>
   );
 }

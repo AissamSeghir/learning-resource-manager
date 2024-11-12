@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./menu.css";
 import Profile from "/profile.png";
-import Homedash from "./Homedash";
-import FormRessource from "./FormRessource";
+import Homedash from "../../components/homDashboard/Homedash";
+import FormRessource from "../../components/forms/AddRessource";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 function Dashboard() {
   const [activeTab, setActiveTab] = useState("home");
@@ -35,6 +35,10 @@ function Dashboard() {
       toast.error("Logout failed");
     },
   });
+
+  const showHomeDash = () => {
+    setActiveTab("home");
+  };
   return (
     <div className="dash">
       <div className="menu">
@@ -81,7 +85,7 @@ function Dashboard() {
       </div>
       <div className="content">
         {activeTab == "home" && <Homedash />}
-        {activeTab == "add-ressource" && <FormRessource />}
+        {activeTab == "add-ressource" && <FormRessource onFormSubmit={showHomeDash}/>}
       </div>
     </div>
   );

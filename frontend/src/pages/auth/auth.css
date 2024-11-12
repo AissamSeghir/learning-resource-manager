@@ -7,8 +7,9 @@
 .formAuth form {
     /* width: 90%; */
     width: 450px;
-    background-color: #1d366f;
-    color: aliceblue;
+    background-color: #EDECEC
+    ;
+    color: black;
     border-radius: 10px;
     margin: auto;
     padding: 15px 0;
@@ -47,7 +48,7 @@
   }
   
   .formAuth button{
-    background-color: #108E73;
+    background-color: black;
     outline: none;
     font-weight: 700;
     border-radius: 8px;
@@ -58,6 +59,7 @@
     font-family: inherit;
     cursor: pointer;
     transition: border-color 0.25s;
+    color: #fff;
 
   }
 

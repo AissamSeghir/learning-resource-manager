@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Logo from "/logo-transparent.png";
 import {useMutation, useQueryClient} from '@tanstack/react-query'
 import {toast} from 'react-hot-toast'
-import { useNavigate } from "react-router-dom";
 import './formRessoures.css'
 
 const addResource = async (newResource)=>{
@@ -14,7 +13,7 @@ const addResource = async (newResource)=>{
     body : JSON.stringify(newResource)
   })
 }
-function FormRessource() {
+function FormRessource({onFormSubmit}) {
   const [type, setType] = useState(["video", "article", "book"]);
   const [title, setTitle] = useState("");
   const [typeSelect, setTypeSelect] = useState("Select type");
@@ -22,8 +21,6 @@ function FormRessource() {
   const [tags, setTags] = useState("");
   const [description, setDescription] = useState("");
   const quiryCleint = useQueryClient()
-  console.log(typeSelect);
-  const navigate = useNavigate();
   const mutation = useMutation({
     mutationFn: addResource,
     onSuccess:()=>{
@@ -34,7 +31,7 @@ function FormRessource() {
       setUrl("")
       setTags("")
       setDescription("")
-      navigate('/dashboard')
+      onFormSubmit();
     },
     onError : (err)=>{
       toast.error('error add resource ', err)
