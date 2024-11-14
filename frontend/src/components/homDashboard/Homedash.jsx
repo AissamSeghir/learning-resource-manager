@@ -69,7 +69,6 @@ function Homedash() {
   };
 
   const handleDeleteResource = (resourceId) => {
-    console.log(resourceId);
 
     toast((t) => (
       <div className="modal">

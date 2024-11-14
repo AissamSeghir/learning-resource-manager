@@ -1,10 +1,9 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route , Navigate } from "react-router-dom";
 import Login from "./pages/auth/Login";
-import Singup from "./pages/auth/Singup";
+import Signup from "./pages/auth/Signup";
 import Home from "./pages/home/Home";
 import {useQuery, useQueryClient} from '@tanstack/react-query'
-import ProtectedRoute from "./ProtectedRoute";
 import Dashboard from "./pages/dashboard/Dashboard";
 import { Toaster } from "react-hot-toast";
 
@@ -20,7 +19,6 @@ function App() {
         if (!res.ok) {
           throw new Error(data.error || "Something went wrong");
         }
-        console.log("authUser is here : ", data);
         return data;
       } catch (error) {
         throw new Error(error);
@@ -33,7 +31,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/signup" element={<Singup />} />
+        <Route path="/signup" element={<Signup />} />
         <Route
             path="/login"
             element={!authUser ? <Login /> : <Navigate to="/" />}

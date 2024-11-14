@@ -18,7 +18,7 @@ const addUser = async (newUser)=>{
    }
    return response;
 }
-function Singup() {
+function Signup() {
   const [firstName, setFisrtName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -75,7 +75,7 @@ function Singup() {
         <input type="email" value={email} placeholder="You@example.com" required onChange={e=>setEmail(e.target.value)}/>
         <label htmlFor="">Password*</label>
         <input type="password" value={password} placeholder="password" onChange={e=>setPassword(e.target.value)}/>
-        <button>Sing Up</button>
+        <button>Sign Up</button>
         <p>
           Already have an account?
           <span>
@@ -89,4 +89,4 @@ function Singup() {
   );
 }
 
-export default Singup;
+export default Signup;
