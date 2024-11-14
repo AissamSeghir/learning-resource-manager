@@ -1,10 +1,13 @@
 import React from "react";
 import "./viewResource.css";
-function ViewResource({ resourceView }) {
+function ViewResource({ resourceView ,onChangeActiveTabe }) {
+  const handleReturn = ()=>{
+    onChangeActiveTabe()
+  }
   return (
     <div className="view">
       <div className="path">
-        <a href="">Home</a>/ <p>{resourceView.title}</p>
+        <a onClick={handleReturn}>Home</a>/ <p>{resourceView.title}</p>
       </div>
       <div className="resource-info">
         <h2>{resourceView.title}</h2>

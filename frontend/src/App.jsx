@@ -29,7 +29,7 @@ function App() {
     retry: false,
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p style={{textAlign:"center", width:"100vw"}}>Loading...</p>;
   return (
     <BrowserRouter>
       <Routes>
@@ -44,7 +44,7 @@ function App() {
           />
         <Route
             path="/dashboard"
-            element={authUser ? <Dashboard /> : <Navigate to="/login" />}
+            element={authUser ? <Dashboard  authUser={authUser}/> : <Navigate to="/login" />}
           />
       </Routes>
       <Toaster/>

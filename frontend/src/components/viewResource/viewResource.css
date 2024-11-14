@@ -10,6 +10,7 @@
 .view a{
     color: #438ffd;
     text-decoration: underline;
+    cursor: pointer;
 }
 .path p{
     font-size: 12px;

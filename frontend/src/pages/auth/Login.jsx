@@ -57,6 +57,7 @@ function Login() {
           placeholder='You@example.com'
           name='email'
           onChange={handleChange}
+          required
           value={formData.email}
         />
         <label htmlFor="password">Password*</label>
@@ -64,6 +65,7 @@ function Login() {
           type="password"
           name='password'
           onChange={handleChange}
+          placeholder='password'
           value={formData.password}
         />
         <button disabled={isLoading}>Sign in</button>

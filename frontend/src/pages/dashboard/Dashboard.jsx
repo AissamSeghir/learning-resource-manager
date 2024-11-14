@@ -4,11 +4,13 @@ import Profile from "/profile.png";
 import Homedash from "../../components/homDashboard/Homedash";
 import FormRessource from "../../components/forms/AddRessource";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
-function Dashboard() {
+import {  useNavigate } from "react-router-dom";
+import ProfileUser from "../../components/profile/ProfileUser";
+function Dashboard({authUser}) {
   const [activeTab, setActiveTab] = useState("home");
 
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate()
   const { mutate: logout } = useMutation({
     mutationFn: async () => {
       try {
@@ -30,6 +32,7 @@ function Dashboard() {
     onSuccess: () => {
       //refetch the authUser query to update the UI
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
+      navigate('/login')
     },
     onError: () => {
       toast.error("Logout failed");
@@ -43,11 +46,14 @@ function Dashboard() {
     <div className="dash">
       <div className="menu">
         <ul>
-          <li className="profile">
+          <li className="profile"
+            onClick={()=>{
+              setActiveTab('profile')
+            }}>
             <div className="img-box">
               <img src={Profile} alt="profile" />
             </div>
-            <h2>Aissam</h2>
+            <h2>{authUser.firstname}</h2>
           </li>
           <li>
             <a
@@ -86,6 +92,7 @@ function Dashboard() {
       <div className="content">
         {activeTab == "home" && <Homedash />}
         {activeTab == "add-ressource" && <FormRessource onFormSubmit={showHomeDash}/>}
+        {activeTab == "profile" && <ProfileUser onFormSubmit={showHomeDash} authUser={authUser}/>}
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ const resourceSchema = new mongoose.Schema(
         url: String,
         type: { type: String, enum: ['video', 'article', 'book'], required: true },
         tags: [String],
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
       }
 );
 

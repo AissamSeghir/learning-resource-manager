@@ -38,6 +38,12 @@ form .ressource-info div{
     margin: 10px 0;
 }
 
+.ressource-info textarea{
+
+    height: 100px;
+    resize: none;
+}
+
 .ressource-info input , select{
     height: 35px;
     font-size: 15px;
@@ -64,3 +70,20 @@ form .ressource-info div{
 .edit-resource button:first-child{
     margin-left: 8px;
 }
+
+@media (max-width: 500px) {
+    form .ressource-info div{
+        width: 100%;
+    }
+
+    header img{
+        margin-right: 40px;
+    }
+  }
+@media (max-width: 400px) {
+    
+
+    header img{
+        width: 100px;
+    }
+  }

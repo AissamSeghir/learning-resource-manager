@@ -39,18 +39,22 @@ function Singup() {
       navigate('/login')
     },
     onError: (err)=>{
-      toast.error('error sing up', err)
+      toast.error('Accont with this Email already exists Please enter another Email', err)
     }
   })
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    mutation.mutate({
-      firstname: firstName,
-      lastname: lastName,
-      email: email,
-      password:password
-    });
+    if (password.length>= 8) {
+      mutation.mutate({
+        firstname: firstName,
+        lastname: lastName,
+        email: email,
+        password:password
+      });
+    }else{
+      toast.error('password must be at least 8 characters')
+    }
   };
 
   
@@ -70,7 +74,7 @@ function Singup() {
         <label htmlFor="">Email*</label>
         <input type="email" value={email} placeholder="You@example.com" required onChange={e=>setEmail(e.target.value)}/>
         <label htmlFor="">Password*</label>
-        <input type="password" value={password} onChange={e=>setPassword(e.target.value)}/>
+        <input type="password" value={password} placeholder="password" onChange={e=>setPassword(e.target.value)}/>
         <button>Sing Up</button>
         <p>
           Already have an account?

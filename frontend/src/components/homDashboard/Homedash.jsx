@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect ,useState } from "react";
 import Logo from "/logo-transparent.png";
 import "./homedash.css";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -26,8 +26,9 @@ function Homedash() {
   const [activeTab, setActiveTab] = useState("resources");
   const [resourceEdite, setResourceEdite] = useState({});
   const [resourceView, setResourceView] = useState({});
+  const [valueSearch, setValueSearch] = useState("");
   const queryClient = useQueryClient();
-
+  
   // Ensure hooks are always called at the top level
   const {
     data: resourcesData = [],
@@ -38,7 +39,13 @@ function Homedash() {
     queryKey: ["resources"],
     queryFn: fetchResources,
   });
-
+  const [filterData, setFilterData] = useState([]);
+  useEffect(() => {
+    if (resourcesData.length > 0) {
+      setFilterData(resourcesData);
+    }
+  }, [resourcesData]);
+  // setFilterData(resourcesData)
   const deleteMutation = useMutation({
     mutationFn: deleteResource,
     onSuccess: () => {
@@ -90,15 +97,33 @@ function Homedash() {
   };
 
   // Render loading and error states
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <p style={{textAlign:"center", width:"80vw"}}>Loading...</p>;
   if (isError) return <div>Error: {error.message}</div>;
   const onChangeActiveTabe = ()=>{
     setActiveTab("resources")
+  }
+
+  const handleFilter = (e)=>{
+    e.preventDefault();
+    if (valueSearch) {
+      const resourceFilter = resourcesData.filter(item =>
+        item.title.toLowerCase().includes(valueSearch.toLowerCase())
+      );
+      setFilterData(resourceFilter)
+    }else{
+
+      setFilterData(resourcesData)
+    }
+
   }
   return (
     <div className="home-dash">
       <header>
         <img src={Logo} alt="logo" />
+      <form onSubmit={handleFilter}>
+        <input type="text" placeholder="Search" onChange={e=>setValueSearch(e.target.value)} />
+        <button>Search</button>
+      </form>
       </header>
       <section>
         {activeTab === "resources" && (
@@ -115,7 +140,7 @@ function Homedash() {
                   </tr>
                 </thead>
                 <tbody>
-                  {resourcesData.map((resource, i) => (
+                  {filterData.map((resource, i) => (
                     <tr key={resource._id}>
                       <td>{i + 1}</td>
                       <td>{resource.title}</td>
@@ -144,12 +169,12 @@ function Homedash() {
                 </tbody>
               </table>
             ) : (
-              <div>No data</div>
+              <h3 style={{textAlign:"center"}}>No data available</h3>
             )}
           </div>
         )}
         {activeTab === "editResource" && <EditResource resourceEdite={resourceEdite} onChangeActiveTabe={onChangeActiveTabe}/>}
-        {activeTab === "viewResource" && <ViewResource resourceView={resourceView} />}
+        {activeTab === "viewResource" && <ViewResource resourceView={resourceView} onChangeActiveTabe={onChangeActiveTabe}/>}
       </section>
     </div>
   );
